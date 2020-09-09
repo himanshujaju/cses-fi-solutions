@@ -1,4 +1,19 @@
-input/code.cpp: In function 'long long int solve(const std::vector<int>&, int, long long int)':
-input/code.cpp:5:9: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-  if (id == arr.size()) return abs(diff);
-      ~~~^~~~~~~~~~~~~
+#include <bits/stdc++.h>
+using namespace std;
+
+long long solve(const vector<int> &arr, int id, long long diff) {
+	if (id == arr.size()) return abs(diff);
+	return min(solve(arr, id + 1, diff + arr[id]), solve(arr, id + 1, diff - arr[id]));
+}
+
+int main() {
+	int n;
+	cin >> n;
+	vector<int> arr(n);
+	for (int &x: arr)
+		cin >> x;
+
+	long long min_diff = solve(arr, 0, 0);
+	cout << min_diff << "\n";
+	return 0;
+}

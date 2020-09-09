@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-
+ 
 constexpr int maxn = 200010;
 long long arr[maxn];
  
@@ -12,16 +12,16 @@ int main() {
 		cin >> arr[i];
 		arr[i] += arr[i - 1];
 	}
-
+ 
 	long long ans = LONG_LONG_MIN;
 
 	for (int i = a; i <= n; i++) {
 		st.insert(arr[i - a]);
-		if (i > b + 1)
+		if ((i - b) > 0)
 			st.erase(st.find(arr[i - b - 1]));
 		ans = max(ans, arr[i] - *st.begin());
 	}
-
+ 
 	cout << ans << "\n";
 	return 0;
 }
